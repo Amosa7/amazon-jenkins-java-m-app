@@ -56,7 +56,7 @@ pipeline {
                     echo "Deploying my Application on EC2 instance..."
                     gv.DeployJAr()
 
-                    def dockerComposeRun = "docker-compose run -f Docker-compose.yaml up"
+                    def dockerComposeRun = "docker-compose -f Docker-compose.yaml up"
                     sshagent(['Aws-ssh-key']) {
                          sh "scp Docker-compose.yaml ec2-user@51.20.255.180:/home/ec2-user"
                          sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.255.180 ${dockerComposeRun}"
