@@ -8,7 +8,7 @@ pipeline {
     }
     agent any
     environment {
-        IMAG_NAME = "amosa77/demo-app:njma-3.0"
+        IMAG_NAME = "amosa77/demo-app:1.1.8-2"
     }
     stages {
 
@@ -58,8 +58,8 @@ pipeline {
 
                     def dockerComposeRun = "docker-compose run -f Docker-compose.yaml up"
                     sshagent(['Aws-ssh-key']) {
-                         sh "scp Docker-compose.yaml ec2-user@51.20.255.180:/home/ec2-user "
-                         sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.255.180 ${dockerRun}"
+                         sh "scp Docker-compose.yaml ec2-user@51.20.255.180:/home/ec2-user"
+                         sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.255.180 ${dockerComposeRun}"
                     }
 
                 }
