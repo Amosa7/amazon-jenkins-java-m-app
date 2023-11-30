@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   java-maven-app:
-    image: "amosa77/demo-app:njma-3.0"
+    image: "amosa77/demo-app:1.1.8-2"
     ports:
       - "8080:8080"
 
