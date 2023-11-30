@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  java-maven-app:
+    image: "amosa77/demo-app:njma-3.0"
+    ports:
+      - "8080:8080"
+
+  postgress:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=my-pwd
