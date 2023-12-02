@@ -8,7 +8,7 @@ pipeline {
     }
     agent any
     environment {
-        IMAG_NAME = "amosa77/demo-app:1.1.8-2"
+        IMAG_NAME = "amosa77/demo-app:2.1.8-2"
     }
     stages {
 
@@ -55,10 +55,10 @@ pipeline {
                 script {
                     echo "Deploying my Application on EC2 instance..."
                     gv.DeployJAr()
-
+                    
                     def shellCmd = "bash ./server-cmd.sh"
                     sshagent(['Aws-ssh-key']) {
-                        sh "scp server-cmd.sh ec2-user@51.20.255.180:/home/ec2-user"
+                        sh "scp server-cmd.sh ec2-user@51.20.255.180:/home/ec2-user ${IMAG_NAME}"
                         sh "scp Docker-compose.yaml ec2-user@51.20.255.180:/home/ec2-user"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.255.180 ${shellCmd}"
                     }
