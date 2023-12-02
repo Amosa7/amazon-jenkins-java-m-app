@@ -55,10 +55,10 @@ pipeline {
                 script {
                     echo "Deploying my Application on EC2 instance..."
                     gv.DeployJAr()
-                    
-                    def shellCmd = "bash ./server-cmd.sh"
+
+                    def shellCmd = "bash ./server-cmd.sh ${IMAG_NAME}"
                     sshagent(['Aws-ssh-key']) {
-                        sh "scp server-cmd.sh ec2-user@51.20.255.180:/home/ec2-user ${IMAG_NAME}"
+                        sh "scp server-cmd.sh ec2-user@51.20.255.180:/home/ec2-user"
                         sh "scp Docker-compose.yaml ec2-user@51.20.255.180:/home/ec2-user"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.255.180 ${shellCmd}"
                     }
